@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>User Registration Form</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	background: linear-gradient(to right, #a57df4, #4407bd);
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	background: white;
+	padding: 25px;
+	border-radius: 10px;
+	width: 300px;
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+	text-align: center;
+	background-color: #37469b;
+	color: white;
+	border-radius: 10px;
+	padding: 8px;
+	margin-bottom: 10px;
+}
+
+label {
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+input {
+	width: 100%;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+input:focus {
+	border-color: #6a11cb;
+	outline: none;
+}
+
+button {
+	width: 100%;
+	margin-top: 15px;
+	padding: 10px;
+	border: none;
+	background: #6a11cb;
+	color: white;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #2575fc;
+}
+</style>
+</head>
+<body>
+	<form action="reg_form">
+		<h2>User Registration</h2>
+		<label>Name</label> <input type="text" name="name" required /> <label>Email</label>
+		<input type="email" name="email" required /> <label>Phone</label> <input
+			type="tel" name="phone" pattern="[0-9]{10}"
+			placeholder="10-digit number" required /> 
+			<label>Date of
+			Birth</label> <input type="date" name="dob" id="dob" required /> <label>Age</label>
+		<input type="text" name="age" id="age" readonly /> <label>Aadhar
+			Number</label> <input type="text" name="aadhar" maxlength="12"
+			pattern="[0-9]{12}" placeholder="Enter 12-digit Aadhar" required />
+		<label>Password</label> <input type="password" name="pass"
+			id="password" required />
+		<button type="submit">Submit</button>
+	</form>
+	<script>
+		document.getElementById("dob").addEventListener("change", function() {
+			let dob = new Date(this.value);
+			let today = new Date();
+			let age = today.getFullYear() - dob.getFullYear();
+			let m = today.getMonth() - dob.getMonth();
+			if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+				age--;
+			}
+			document.getElementById("age").value = age;
+		});
+	</script>
+</body>
+</html>
